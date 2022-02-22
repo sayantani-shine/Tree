@@ -1,0 +1,25 @@
+ int findMax(Node *root)
+    {
+        if(root==NULL)
+        return INT_MIN;
+        else
+        return max(root->data,max(findMax(root->left),findMax(root->right)));
+    }
+    int findMin(Node *root)
+    {
+        int val=INT_MAX;
+       if(root==NULL)
+       return val;
+    queue<Node *>q;
+    q.push(root);
+    while(q.empty()==false){
+        Node *curr=q.front();
+        q.pop();
+       val=min(val,curr->data);
+        if(curr->left!=NULL)
+            q.push(curr->left);
+        if(curr->right!=NULL)
+            q.push(curr->right);
+    }
+    return val;
+    }
