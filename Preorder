@@ -1,0 +1,18 @@
+void preOrder(Node* root,vector<int>& t)
+{
+    if(root!=NULL)
+    {
+        t.push_back(root->data);
+        preOrder(root->left,t);
+        preOrder(root->right,t);
+    }
+    
+}
+//Function to return a list containing the preorder traversal of the tree.
+vector <int> preorder(Node* root)
+{
+  // Your code here
+  vector<int> t;
+  preOrder(root,t);
+  return t;
+}
