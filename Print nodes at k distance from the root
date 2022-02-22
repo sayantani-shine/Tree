@@ -1,0 +1,18 @@
+void kdistance(struct Node *root,int k,vector<int> &p)
+{
+    if(root==NULL)
+    return;
+    if(k==0)
+    p.push_back(root->data);
+    else
+    {
+        kdistance(root->left,k-1,p);
+        kdistance(root->right,k-1,p);
+    }
+}
+vector<int> Kdistance(struct Node *root, int k)
+{
+  vector<int> p;
+  kdistance(root,k,p);
+  return p;
+}
