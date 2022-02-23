@@ -1,0 +1,82 @@
+level order traversal
+vector<int> findSpiral(Node *root)
+{
+    vector<int> t;
+  if(root==NULL)
+  return t;
+   deque<Node*> d;
+ 
+    // Push root
+    d.push_back(root);
+ 
+    // Direction 0 shows print right to left
+    // and for Direction 1 left to right
+    int dir = 0;
+    while (!d.empty()) {
+        int size = d.size();
+        while (size--) {
+            // One whole level
+            // will be print in this loop
+ 
+            if (dir == 0) {
+                Node* temp = d.back();
+                d.pop_back();
+                if (temp->right)
+                    d.push_front(temp->right);
+                if (temp->left)
+                    d.push_front(temp->left);
+                t.push_back(temp->data);
+            }
+            else {
+                Node* temp = d.front();
+                d.pop_front();
+                if (temp->left)
+                    d.push_back(temp->left);
+                if (temp->right)
+                    d.push_back(temp->right);
+                t.push_back(temp->data);
+            }
+        }
+      
+        // Direction change
+        dir = 1 - dir;
+    }
+    return t;
+}
+o(n^2>
+optimised
+int maxWidth(struct Node* root)
+{
+    // Base case
+    if (root == NULL)
+        return 0;
+ 
+    // Initialize result
+    int result = 0;
+ 
+    // Do Level order traversal keeping track of number
+    // of nodes at every level.
+    queue<Node*> q;
+    q.push(root);
+    while (!q.empty()) {
+        // Get the size of queue when the level order
+        // traversal for one level finishes
+        int count = q.size();
+ 
+        // Update the maximum node count value
+        result = max(count, result);
+ 
+        // Iterate for all the nodes in the queue currently
+        while (count--) {
+            // Dequeue an node from queue
+            Node* temp = q.front();
+            q.pop();
+ 
+            // Enqueue left and right children of
+            // dequeued node
+            if (temp->left != NULL)
+                q.push(temp->left);
+            if (temp->right != NULL)
+                q.push(temp->right);
+        }
+    }
