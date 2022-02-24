@@ -1,0 +1,26 @@
+ bool isSubTree(Node* T, Node* S) 
+    {
+       
+       if(S==NULL)
+       return true;
+       if(T==NULL)
+       return false;
+        vector<int> inT=inorder(T);
+        vector<int> inS=inorder(S);
+      auto it = search(inT.begin(), inT.end(), inS.begin(), inS.end());
+    if (it == inT.end()) {
+        return false;
+    }
+    inT.erase(inT.begin(), inT.end());
+    inS.erase(inS.begin(), inS.end());
+        inT=preorder(T);
+    inS=preorder(S);
+   auto itt = search(inT.begin(), inT.end(), inS.begin(), inS.end());
+    if (itt == inT.end()) {
+        return false;
+    }
+ 
+    return true;
+    
+        
+    }
